@@ -1,3 +1,4 @@
 {
-    "python.pythonPath": "/Users/takeharakenta/.local/share/virtualenvs/AtCoder-JIK55o8T/bin/python"
+    "python.pythonPath": "/Users/takeharakenta/.local/share/virtualenvs/AtCoder-JIK55o8T/bin/python",
+    "python.linting.pylintEnabled": true
 }
