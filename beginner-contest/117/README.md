@@ -26,6 +26,6 @@
 
 ## D
 
-:todo:
+:construction:
 
 未着手。
