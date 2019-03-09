@@ -1,36 +1,23 @@
-def inverse(s: str) -> int:
-    b = 1
-    ret = 0
-    for c in reversed(s):
-        ret += int(c) * b
-        b *= -2
-    return ret
+def div_minus2(n: int)->tuple:
+    """n を -2 で割ったときの商とあまりを計算する。
+    """
+    d = n // (-2)
+    r = n % (-2)
+    if r == -1:
+        return d+1, 1
+    return d, r
 
 
 def base_2number(N: int) -> int:
-    pass
     if N == 0:
         return '0'
-    if N < 0:
-        return 'not implemented'
     # N > 0
     s = ''
-    b = []
-    carry = 0
-    is_minus = False
-    while N > 0:
-        v = (N % 2) + (carry % 2)
-        if is_minus:
-            # if v % 2 == 1:
-            pass
-        else:
-            if v % 2 == 1:
-                b.append(1)
-            v -= v & 1
+    while N != 0:
+        d, r = div_minus2(N)
+        N = d
+        s = str(r) + s
 
-        s = str(N % 2) + s
-        is_minus = not is_minus
-        N >>= 1
     return s
 
 
