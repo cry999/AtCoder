@@ -9,6 +9,7 @@ pylint = "*"
 rope = "*"
 
 [packages]
+matplotlib = "*"
 
 [requires]
 python_version = "3.4.3"
