@@ -117,5 +117,7 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
+# cpp
+a.out
 
 .vscode/
