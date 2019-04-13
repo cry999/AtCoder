@@ -1,4 +1,11 @@
 ---
+AccessModifierOffset: -4
+AlignTrailingComments: true
+AllowShortBlocksOnASingleLine: true
+AllowShortIfStatementsOnASingleLine: true
+AllowShortLoopsOnASingleLine: true
 BreakBeforeBraces: Allman
 IndentWidth: 4
 TabWidth: 4
+SpacesInAngles: false
+SpacesInParentheses: true
