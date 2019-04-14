@@ -29,7 +29,12 @@ CONTESTS = {
         'dirname': 'grand',
         'files': ['A', 'B', 'C', 'D', 'E', 'F'],
         'contest_name': 'AtCoder Grand Contest',
-    }
+    },
+    'S8P': {
+        'dirname': 's8p',
+        'files': ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'],
+        'contest_name': 'square869120Contest',
+    },
 }
 README_TEMPLATE = '''# {contest_name} {contest_num}
 
