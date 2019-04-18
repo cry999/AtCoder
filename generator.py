@@ -21,7 +21,7 @@ LANGUAGES = {
 # AtCoder's perticular variables
 CONTESTS = {
     'ABC': {
-        'dirname': 'beginner-contest',
+        'dirname': 'beginner',
         'files': ['A', 'B', 'C', 'D'],
         'contest_name': 'AtCoder Beginner Contest',
     },
