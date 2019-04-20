@@ -35,6 +35,11 @@ CONTESTS = {
         'files': ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'],
         'contest_name': 'square869120Contest',
     },
+    'T1': {
+        'dirname': 'tenka1',
+        'files': ['A', 'B', 'C', 'D', 'E', 'F'],
+        'contest_name': 'Tenka1 Programing Contest',
+    }
 }
 README_TEMPLATE = '''# {contest_name} {contest_num}
 
