@@ -8,7 +8,9 @@
 
 ## B
 
-TODO: not implemented
+:o:
+
+出現頻度をかぞえあげる。`O(N)`
 
 ## C
 
