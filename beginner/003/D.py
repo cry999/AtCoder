@@ -10,9 +10,14 @@ def winter(R: int, C: int, X: int, Y: int, D: int, L: int)->int:
     for n in range(X*Y):
         comb[n+1][0] = 1
         for r in range(n+1):
-            comb[n+1][r+1] = (comb[n][r] + comb[n][r+1]) % MOD
+            comb[n + 1][r + 1] = (comb[n][r] + comb[n][r + 1]) % MOD
 
-    if (X-1)*Y < D + L or X*(Y-1) < D + L:
+    def combi(n: int, r: int) -> int:
+        if n < r:
+            return 0
+        return comb[n][r]
+
+    if X*Y == D + L:
         # 何も考えず配置しても、上下左右の最大値のさがそれぞれ X, Y となるように
         # 取れる。
         res = (res * comb[X*Y][D]) % MOD
@@ -20,19 +25,20 @@ def winter(R: int, C: int, X: int, Y: int, D: int, L: int)->int:
     else:
         # (X-i)*(Y-j) (0 <= i, 0 <= j and (i != 0 or j != 0)) に
         # おさまってしまう場合がある。それらの可能性を引く。
-        # dp[x][y] を x 行 y 列に収まる場合の配置数とする。
-        # この時、dp[X][Y] - dp[X][Y-1] - dp[X-1][Y] + dp[X-1][Y-1]
-        # が作る区画が (X x Y) となる。
-        dp = [[0] * (Y+1) for _ in range(X+1)]
 
-        for x in range(X+1):
-            for y in range(Y+1):
-                if D + L <= x*y:
-                    dp[x][y] = (comb[x*y][D] * comb[x*y-D][L]) % MOD
-        res = (res * (dp[X][Y]-dp[X][Y-1]-dp[X-1][Y]+dp[X-1][Y-1])) % MOD
+        stuff = D+L
+        whole = combi(X*Y, stuff)
+        ud_1 = combi(X*(Y-1), stuff)*2
+        rl_1 = combi((X-1)*Y, stuff)*2
+        ud_2 = combi(X*(Y-2), stuff)
+        rl_2 = combi((X-2)*Y, stuff)
+        ru_2 = combi((X-1)*(Y-1), stuff)*4
+        ud_3 = combi((X-1)*(Y-2), stuff)*2
+        rl_3 = combi((X-2)*(Y-1), stuff)*2
+        rlud_4 = combi((X-2)*(Y-2), stuff) if X*Y != 1 else 0
+        whole = whole-(ud_1+rl_1)+(ud_2+rl_2+ru_2)-(ud_3+rl_3)+rlud_4
 
-        for x in range(X+1):
-            print(dp[x])
+        res = (res * whole * combi(stuff, D)) % MOD
 
     return res
 

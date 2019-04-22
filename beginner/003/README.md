@@ -20,4 +20,6 @@
 
 ## D
 
-TODO: not implemented
+:x:
+
+100 点分は解けた。`D+L < X*Y` のときの計算が包除原理の使い方をミスっていて `WA`。`combination` の計算で `O(X^2*Y^2)`
