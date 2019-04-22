@@ -11,7 +11,7 @@ argv = sys.argv
 
 # common variables
 ABS_FILE = os.path.abspath(__file__)
-BASE_DIR = os.path.dirname(ABS_FILE)
+BASE_DIR = os.path.dirname(os.path.dirname(ABS_FILE))
 LANGUAGES = {
     'python': {
         'extension': 'py',
