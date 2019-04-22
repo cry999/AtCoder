@@ -2,12 +2,40 @@
 
 AtCoder
 
-## generator.py
+## beginner
 
-コンテスト用のディレクトリ作成ツール。
+AtCoder Beginner Contest
 
-```zsh
-python generator.py ABC [contest number]
-```
+2019/04/22 に全問題とき終わり。
 
-で実行。今の所 ABC のみに対応。
+## grand
+
+AtCoder Grand Contest
+
+:construction:
+
+## tenka1
+
+Tenka1 Programmer Contest
+
+:construction:
+
+## keyence
+
+Keyence
+
+:construction:
+
+## procon
+
+みんなのプロコン
+
+:construction:
+
+## tools
+
+Utilty tools in this directory. Details is written on [README.md](./tools/README.md).
+
+## util
+
+utility data structures and algorithms.
