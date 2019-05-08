@@ -32,7 +32,9 @@
 
 ## F
 
-TODO: not implemented
+:x:
+
+確率苦手。`O(A1xA2xB1xB2xC1xC3)`
 
 ## G
 
