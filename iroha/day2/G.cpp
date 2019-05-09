@@ -17,19 +17,13 @@ struct edge
     int to, cost;
 };
 
-struct shop
-{
-    int num, price;
-};
-
 typedef pair<int, int> P;
 
 int N, M, K;
-vector<edge> G[MAX_N];
-shop F[MAX_N];
+vector<edge> G[MAX_N * ( MAX_K + 1 )];
 
 // dp[n][k] = 町 n にたどり着いた時に花を k 本持っているための最小コスト
-int64_t dp[MAX_N][MAX_K + 1];
+int64_t dp[MAX_N * ( MAX_K + 1 )];
 
 int main( int argc, char **argv )
 {
@@ -40,27 +34,56 @@ int main( int argc, char **argv )
         int a, b, c;
         cin >> a >> b >> c;
 
-        G[a - 1].push_back( ( edge ){b - 1, c} );
-        G[b - 1].push_back( ( edge ){a - 1, c} );
-    }
-    for ( int n = 0; n < N; n++ ) { cin >> F[n].num >> F[n].price; }
-
-    // 改造 dijkstra
-    memset( dp, INF, sizeof( dp ) );
-    dp[0][0] = 0;
-
-    int n = F[0].num, p = F[0].price;
-    for ( int k = 0; true; k += n )
-    {
-        if ( k >= K )
+        // 各階層に同じグラフを作る。
+        for ( int k = 0; k <= K; k++ )
         {
-            dp[0][K] = k * p;
-            break;
+            G[( a - 1 ) + k * N].push_back( ( edge ){( b - 1 ) + k * N, c} );
+            G[( b - 1 ) + k * N].push_back( ( edge ){( a - 1 ) + k * N, c} );
         }
-        dp[0][k] = k * p;
     }
+    for ( int n = 0; n < N; n++ )
+    {
+        int num, price;
+        cin >> num >> price;
+
+        // ある階層 k の頂点 n から階層 k+num の頂点 n にコスト price
+        // の辺が作れる。 ただし、k+num が K より大きい場合は K
+        // として扱う。つまり、0 ~ K-1 層は花 を k 本買った状態を表す層
+        // となるが、K 層目は K 本以上買った状態を表す層となる。
+        // あと、この層間の辺は一方通行。
+        for ( int k = 0; k < K; k++ )
+        {
+            if ( k + num <= K )
+                G[n + k * N].push_back( ( edge ){n + ( k + num ) * N, price} );
+            else
+                G[n + k * N].push_back( ( edge ){n + K * N, price} );
+        }
+    }
+
+    // dijkstra
+    memset( dp, -1, sizeof( dp ) );
+    dp[0] = 0;
 
     priority_queue<P> q;
+    q.push( P( dp[0], 0 ) );
+
+    while ( !q.empty() )
+    {
+        int u = q.top().second;
+        q.pop();
+
+        for ( auto e : G[u] )
+        {
+            int alt = dp[u] + e.cost;
+            if ( dp[e.to] < 0 || alt < dp[e.to] )
+            {
+                dp[e.to] = alt;
+                q.push( P( dp[e.to], e.to ) );
+            }
+        }
+    }
+
+    cout << dp[( N - 1 ) + K * N] << endl;
 
     return 0;
 }
