@@ -1,89 +1,82 @@
-#include <algorithm>
-#include <cstring>
 #include <iostream>
 #include <queue>
-#include <vector>
 
 using namespace std;
 
-#define MAX_N 1000
-#define MAX_M 2000
-#define MAX_K 1000
+typedef long long ll;
+typedef pair<int, ll> P;
 
-#define INF 1 << 31
+#define INF 1e16
+#define mod 1000000007
+
+struct state
+{
+    int i, j;
+    ll cost;
+};
 
 struct edge
 {
     int to, cost;
 };
 
-typedef pair<int, int> P;
+bool operator<( const state &a, const state &b ) { return a.cost > b.cost; }
 
 int N, M, K;
-vector<edge> G[MAX_N * ( MAX_K + 1 )];
+vector<edge> G[1001];
+int X[1001];
+ll Y[1001];
 
-// dp[n][k] = 町 n にたどり着いた時に花を k 本持っているための最小コスト
-int64_t dp[MAX_N * ( MAX_K + 1 )];
+ll dp[1001][2001];
 
-int main( int argc, char **argv )
+int main()
 {
-    // inputs
     cin >> N >> M >> K;
     for ( int m = 0; m < M; m++ )
     {
         int a, b, c;
         cin >> a >> b >> c;
 
-        // 各階層に同じグラフを作る。
-        for ( int k = 0; k <= K; k++ )
-        {
-            G[( a - 1 ) + k * N].push_back( ( edge ){( b - 1 ) + k * N, c} );
-            G[( b - 1 ) + k * N].push_back( ( edge ){( a - 1 ) + k * N, c} );
-        }
-    }
-    for ( int n = 0; n < N; n++ )
-    {
-        int num, price;
-        cin >> num >> price;
-
-        // ある階層 k の頂点 n から階層 k+num の頂点 n にコスト price
-        // の辺が作れる。 ただし、k+num が K より大きい場合は K
-        // として扱う。つまり、0 ~ K-1 層は花 を k 本買った状態を表す層
-        // となるが、K 層目は K 本以上買った状態を表す層となる。
-        // あと、この層間の辺は一方通行。
-        for ( int k = 0; k < K; k++ )
-        {
-            if ( k + num <= K )
-                G[n + k * N].push_back( ( edge ){n + ( k + num ) * N, price} );
-            else
-                G[n + k * N].push_back( ( edge ){n + K * N, price} );
-        }
+        G[a - 1].push_back( ( edge ){b - 1, c} );
+        G[b - 1].push_back( ( edge ){a - 1, c} );
     }
 
-    // dijkstra
-    memset( dp, -1, sizeof( dp ) );
-    dp[0] = 0;
+    for ( int n = 0; n < N; n++ ) cin >> X[n] >> Y[n];
+    for ( int i = 0; i < N; i++ )
+        for ( int j = 0; j < 2 * K + 1; j++ ) dp[i][j] = INF;
 
-    priority_queue<P> q;
-    q.push( P( dp[0], 0 ) );
+    priority_queue<state> que;
+    que.push( ( state ){0, 0, 0} );
+    dp[0][0] = 0;
 
-    while ( !q.empty() )
+    while ( !que.empty() )
     {
-        int u = q.top().second;
-        q.pop();
+        state s = que.top();
+        que.pop();
 
-        for ( auto e : G[u] )
+        if ( dp[s.i][s.j] < s.cost ) continue;
+        if ( s.j + X[s.i] <= 2 * K )
         {
-            int alt = dp[u] + e.cost;
-            if ( dp[e.to] < 0 || alt < dp[e.to] )
+            if ( dp[s.i][s.j + X[s.i]] > s.cost + Y[s.i] )
             {
-                dp[e.to] = alt;
-                q.push( P( dp[e.to], e.to ) );
+                dp[s.i][s.j + X[s.i]] = s.cost + Y[s.i];
+                que.push( ( state ){s.i, s.j + X[s.i], s.cost + Y[s.i]} );
+            }
+        }
+        for ( auto e : G[s.i] )
+        {
+            if ( dp[e.to][s.j] > s.cost + e.cost )
+            {
+                dp[e.to][s.j] = s.cost + e.cost;
+                que.push( ( state ){e.to, s.j, s.cost + e.cost} );
             }
         }
     }
 
-    cout << dp[( N - 1 ) + K * N] << endl;
+    ll res = INF;
+    for ( ll k = K; k < 2 * K + 1; k++ ) res = min( res, dp[N - 1][k] );
+
+    cout << ( ( res == INF ) ? -1 : res ) << endl;
 
     return 0;
 }
