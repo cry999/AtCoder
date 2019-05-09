@@ -38,11 +38,15 @@
 
 ## G
 
-TODO: not implemented
+:x:
+
+階層化するところまでは実装できたが `TLE` になってしまい、`AC` の実装できず。`O(KM logKN)`
 
 ## H
 
-TODO: not implemented
+:x:
+
+テキスト `A` から単語 `A` を探すための `KMP` のテーブル `B` から `A` を復元する問題。`KMP` になじみがなく全く分からず。`O(N)`
 
 ## I
 
