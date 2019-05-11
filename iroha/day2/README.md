@@ -56,12 +56,10 @@
 
 ## J
 
-TODO: not implemented
+:x:
+
+ちょっと特殊な `SegmentTree` 。`SegmentTree` を使うこと自体は思い至ったが実装ができなかった。`O(N)`
 
 ## K
-
-TODO: not implemented
-
-## L
 
 TODO: not implemented
