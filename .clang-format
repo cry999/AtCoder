@@ -4,6 +4,7 @@ AlignTrailingComments: true
 AllowShortBlocksOnASingleLine: true
 AllowShortIfStatementsOnASingleLine: true
 AllowShortLoopsOnASingleLine: true
+AlwaysBreakTemplateDeclarations: true
 BreakBeforeBraces: Allman
 IndentWidth: 4
 TabWidth: 4
