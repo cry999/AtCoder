@@ -5,18 +5,18 @@
 using namespace std;
 
 typedef pair<int, int> point;
-typedef pair<int, point> entry;
+typedef pair<int64_t, point> entry;
 
 #define MAX_H 500
 #define MAX_W 500
-#define MAX_X MAX_H *MAX_W - 2
+#define MAX_X ( MAX_H * MAX_W ) - 2
 
-#define INF 1LL << 60;
+#define INF 1L << 60;
 
 int A[MAX_H][MAX_W];
-long long C[MAX_X + 1];
+int64_t C[MAX_X + 1];
 
-long long dp[MAX_H][MAX_W];
+int64_t dp[MAX_H][MAX_W];
 
 int dX[4] = {1, -1, 0, 0};
 int dY[4] = {0, 0, 1, -1};
@@ -48,7 +48,7 @@ int main( int argc, char **argv )
     dp[sx][sy] = 0;
 
     priority_queue<entry> q;
-    q.push( entry( dp[sx][sy], point( sx, sy ) ) );
+    q.push( entry( -dp[sx][sy], point( sx, sy ) ) );
 
     while ( !q.empty() )
     {
@@ -63,18 +63,18 @@ int main( int argc, char **argv )
             int nx = x + dX[i];
             int ny = y + dY[i];
 
-            if ( nx < 0 or H <= nx ) continue;
-            if ( ny < 0 or W <= ny ) continue;
+            if ( nx < 0 || H <= nx ) continue;
+            if ( ny < 0 || W <= ny ) continue;
 
             int nidx = A[nx][ny];
-            long long cost = ( idx == nidx ) ? 0 : C[nidx];
-            long long alt = dp[x][y] + cost;
+            int64_t cost = ( idx == nidx ) ? 0 : C[nidx];
+            int64_t alt = dp[x][y] + cost;
 
             if ( alt < dp[nx][ny] )
             {
                 dp[nx][ny] = alt;
                 if ( ( nx != gx || ny != gy ) && ( dp[nx][ny] < dp[gx][gy] ) )
-                    q.push( entry( dp[nx][ny], point( nx, ny ) ) );
+                    q.push( entry( -dp[nx][ny], point( nx, ny ) ) );
             }
         }
     }

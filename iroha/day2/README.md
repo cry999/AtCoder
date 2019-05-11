@@ -50,7 +50,9 @@
 
 ## I
 
-TODO: not implemented
+:o:
+
+`dijkstra` 。方法はすぐに思いつき実装も `O(HW logHW)` くらいでできたつもりだったがなぜか `TLE` 。そのまま嵌まり続ける。結局 `pair` の型引数が `int` だったために `overflow` 起こして無駄な処理が大量発生していた。普段 `python` で型を気にせず実装しているための弊害だった。気をつけたい。`O(HW logHW)`
 
 ## J
 
