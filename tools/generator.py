@@ -39,7 +39,12 @@ CONTESTS = {
         'dirname': 'tenka1',
         'files': ['A', 'B', 'C', 'D', 'E', 'F'],
         'contest_name': 'Tenka1 Programing Contest',
-    }
+    },
+    'DIV': {
+        'dirname': 'diverta',
+        'files': ['A', 'B', 'C', 'D', 'E', 'F'],
+        'contest_name': 'diverta Programing Contest',
+    },
 }
 README_TEMPLATE = '''# {contest_name} {contest_num}
 
