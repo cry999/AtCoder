@@ -45,6 +45,11 @@ CONTESTS = {
         'files': ['A', 'B', 'C', 'D', 'E', 'F'],
         'contest_name': 'diverta Programing Contest',
     },
+    'IROHA': {
+        'dirname': 'iroha',
+        'files': ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'],
+        'contest_name': 'Iroha Chan Contest',
+    },
 }
 README_TEMPLATE = '''# {contest_name} {contest_num}
 
