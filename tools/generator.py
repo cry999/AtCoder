@@ -16,6 +16,12 @@ LANGUAGES = {
     'python': {
         'extension': 'py',
     },
+    'c++': {
+        'extension': 'cpp',
+    },
+    'cpp': {
+        'extension': 'cpp',
+    },
 }
 
 # AtCoder's perticular variables
