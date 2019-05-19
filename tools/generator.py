@@ -28,7 +28,7 @@ LANGUAGES = {
 CONTESTS = {
     'ABC': {
         'dirname': 'beginner',
-        'files': ['A', 'B', 'C', 'D'],
+        'files': ['A', 'B', 'C', 'D', 'E', 'F'],
         'contest_name': 'AtCoder Beginner Contest',
     },
     'AGC': {
