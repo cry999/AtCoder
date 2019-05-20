@@ -56,6 +56,11 @@ CONTESTS = {
         'files': ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'],
         'contest_name': 'Iroha Chan Contest',
     },
+    'EXA': {
+        'dirname': 'exawizards',
+        'files': ['A', 'B', 'C', 'D', 'E', 'F'],
+        'contest_name': 'ExaWizards',
+    },
 }
 README_TEMPLATE = '''# {contest_name} {contest_num}
 
