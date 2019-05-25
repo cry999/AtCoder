@@ -61,6 +61,11 @@ CONTESTS = {
         'files': ['A', 'B', 'C', 'D', 'E', 'F'],
         'contest_name': 'ExaWizards',
     },
+    'CPSCO': {
+        'dirname': 'cpsco',
+        'files': ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'],
+        'contest_name': 'CPSCO',
+    },
 }
 README_TEMPLATE = '''# {contest_name} {contest_num}
 
@@ -131,7 +136,7 @@ if not os.path.exists(contest_dir):
 try:
     contest_num_dir = os.path.join(contest_dir, contest_num)
     if not os.path.exists(contest_num_dir):
-        os.mkdir(contest_num_dir)
+        os.makedirs(contest_num_dir, exist_ok=True)
 except Exception as e:
     print('cannot create {}'.format(contest_num_dir))
     print(e)
