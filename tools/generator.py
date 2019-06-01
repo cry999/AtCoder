@@ -61,6 +61,11 @@ CONTESTS = {
         'files': ['A', 'B', 'C', 'D', 'E', 'F'],
         'contest_name': 'ExaWizards',
     },
+    'M-SOL': {
+        'dirname': 'm-solutions',
+        'files': ['A', 'B', 'C', 'D', 'E', 'F'],
+        'contest_name': 'M-Solutions Programming Contest',
+    },
 }
 README_TEMPLATE = '''# {contest_name} {contest_num}
 
