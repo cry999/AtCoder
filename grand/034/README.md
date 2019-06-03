@@ -22,12 +22,18 @@
 
 ## D
 
-TODO: not implemented
+:x:
+
+最小費用流なんて思いつかなかった。`O(NS logN)`
 
 ## E
 
-TODO: not implemented
+:x:
+
+解説読んでやりたいことはわかったが実装方法がよくわからなかった。 `O(N^2)`
 
 ## F
 
-TODO: not implemented
+:x:
+
+アダマール変換なんて初めて見た。`O(N 2^N)`
